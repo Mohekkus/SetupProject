@@ -37,6 +37,11 @@ object NetworkModule {
             .callTimeout(2, TimeUnit.MINUTES)
             .build()
 
+    @Singleton
+    @Provides
+    fun setupLogging(): HttpLoggingInterceptor =
+        HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
+
     @Provides
     @Singleton
     fun apiService(retrofit: Retrofit): ApiService = retrofit.create(ApiService::class.java)
