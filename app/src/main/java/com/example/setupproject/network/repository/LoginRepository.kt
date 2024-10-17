@@ -1,4 +1,4 @@
-package com.example.setupproject.repository
+package com.example.setupproject.network.repository
 
 import com.example.setupproject.etc.TokenStorage
 import com.example.setupproject.network.ApiService
@@ -12,7 +12,9 @@ class LoginRepository @Inject constructor(
 ) {
 
     suspend fun login(
-        onSuccess: () -> Unit
+        onSuccess: () -> Unit,
+        onError: () -> Unit,
+        onLoading: () -> Unit
     ) {
         ApiHandler.handle(apiService.login()) {
             when (it.status) {
